@@ -1,7 +1,9 @@
-<!-- <ul>
-  <%= for(var i = 0 ; i < movieArray.length; i ++){
-    <li><%= movieArray[i] %></li>
-  <%}%>
-</ul> -->
 
-<h1>Hello</h1>
+
+<h1>These Are The Movies You Searched For</h1>
+
+<ul style='list-style-type: none;'>
+  <% for(var i = 0 ; i < movieArray.length; i ++){ %>
+    <li><a href='http://www.imdb.com/title/<%= movieArray[i][1] %>' target='black'><%= movieArray[i][0] %></a></li>
+  <% } %>
+</ul>

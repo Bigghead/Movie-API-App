@@ -11,6 +11,7 @@ var movieArray = [];
 
 var movie;
 app.get('/', function(req, res){
+  movieArray.length = 0
   res.render('home');
 });
 
@@ -20,12 +21,11 @@ app.post('/movieSearch', function(req, res){
   request(url, function(error, response, body){
     if(!error && res.statusCode === 200){
       var movieResults = JSON.parse(body);
-      console.log(movieResults);
       for(var i = 0 ; i < movieResults.Search.length; i ++){
-        movieArray.push(movieResults.Search[i].Title);
+        movieArray.push([movieResults.Search[i].Title, movieResults.Search[i].imdbID]);
       }
-      res.send(movieArray);
-      // res.render('resultsPage', {movieArray: movieArray});
+      // res.send(movieArray);
+      res.render('resultsPage', {movieArray: movieArray});
     }
   });
 });
